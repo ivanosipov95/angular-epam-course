@@ -1,0 +1,7 @@
+*/.idea
+*/node_modules
+.DS_Store
+.idea/
+An1-01-ForNovice/.DS_Store
+An1-01-ForNovice/app/vendor/
+An1-01-ForNovice/npm-debug.log
