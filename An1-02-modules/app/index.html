@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS Modules</title>
+	<link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="vendor/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/ng-cloak.css" rel="stylesheet">
+</head>
+<body ng-cloak ng-controller="Day as vm">
+	<div class="panel">
+		<div class="page-header">
+			<h3>AngularJS App</h3>
+		</div>
+		<h4>Today is  {{vm.day || (unknown) | dayNames}}</h4>
+		<h4 ng-controller="Tomorrow as vm" highlight="Friday">Tomorrow is  {{vm.tomorrow || (unknown) | dayNames}}</h4>
+	</div>
+
+	<script src="vendor/angular/angular.min.js"></script>
+	<script src="app.js"></script>
+
+	<script src="common/filters/common-filters.module.js"></script>
+	<script src="common/filters/day-names.filter.js"></script>
+
+	<script src="common/services/common-services.module.js"></script>
+	<script src="common/services/now-value.service.js"></script>
+	<script src="common/common.module.js"></script>
+
+	<script src="feature/features.module.js"></script>
+	<script src="feature/day.controller.js"></script>
+	<script src="feature/tomorrow.controller.js"></script>
+	<script src="feature/highlight.directive.js"></script>
+	<script src="feature/days.service.js"></script>
+
+</body>
+</html>
