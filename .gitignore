@@ -1,5 +1,6 @@
 */.idea
 */node_modules
+*/vendor
 .DS_Store
 .idea/
 An1-01-ForNovice/.DS_Store
