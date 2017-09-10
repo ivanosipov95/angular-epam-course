@@ -43,25 +43,55 @@
 
 
 			<!-- Task 6-->
-			<div class="panel-body">
-				<h5>Директива как элемент</h5>
-				<unordered-list6 list-source="products" list-property="price | currency" />
-			</div>
+			<!--<div class="panel-body">-->
+				<!--<h5>Директива как элемент</h5>-->
+				<!--<unordered-list6 list-source="products" list-property="price | currency" />-->
+			<!--</div>-->
 
-			<div class="panel-body">
-				<h5>Директива как атрибут</h5>
-				<div unordered-list6="products" list-property="price | currency"></div>
-			</div>
+			<!--<div class="panel-body">-->
+				<!--<h5>Директива как атрибут</h5>-->
+				<!--<div unordered-list6="products" list-property="price | currency"></div>-->
+			<!--</div>-->
 
-			<div class="panel-body">
-				<h5>Директива как класс</h5>
-				<div class="unordered-list6: products" list-property="price | currency"></div>
-			</div>
+			<!--<div class="panel-body">-->
+				<!--<h5>Директива как класс</h5>-->
+				<!--<div class="unordered-list6: products" list-property="price | currency"></div>-->
+			<!--</div>-->
 
-			<div class="panel-body">
-				<h5>Директива как комментарий</h5>
-				<!-- directive: unordered-list6 products -->
-			</div>
+			<!--<div class="panel-body">-->
+				<!--<h5>Директива как комментарий</h5>-->
+				<!--&lt;!&ndash; directive: unordered-list6 products &ndash;&gt;-->
+			<!--</div>-->
+
+
+			<!-- Task 7-->
+			<!--<div unordered-list7="products"></div>-->
+			<!--<div unordered-list8="products"></div>-->
+			<!--<div unordered-list9="products"></div>-->
+			<!--<div unordered-list10="products"></div>-->
+			<!--<div unordered-list11="products"></div>-->
+			<!--<div unordered-list12="products" template="table"></div>-->
+
+			<!-- Task 8, 9-->
+
+			<!--<div scope-demo-false></div>-->
+			<!--<div ng-controller="Second" scope-demo-false></div>-->
+
+			<!-- Task 10-->
+			<!--<div scope-demo-true></div>-->
+			<!--<div scope-demo-true></div>-->
+
+
+			<!-- Task 11-->
+			<!--<div scope-demo-isolated></div>-->
+
+			<!-- Task 12-->
+			<!--<component decor1 decor2></component>-->
+
+			<!-- Task 13-->
+			Value in Default Controller: <input ng-model="data.name">
+
+			<div scope-demo-isolated1 prop="{{data.name}}"></div>
 		</div>
 	</div>
 
@@ -76,6 +106,13 @@
 	<script src="services/productsData.js"></script>
 	<script src="services/userData.js"></script>
 	<script src="directives/directives.js"></script>
+
+
+	<script id="listTemplate" type="text/template">
+		<ul>
+			<li ng-repeat="item in data">{{item.price | currency}}</li>
+		</ul>
+	</script>
 </body>
 </html>
 
