@@ -18,9 +18,31 @@
         .directive('scopeDemoTrue', scopeDemoTrue)
         .directive('scopeDemoIsolated', scopeDemoIsolated)
         .directive('scopeDemoIsolated1', scopeDemoIsolated1)
+        .directive('scopeDemoIsolated2', scopeDemoIsolated2)
+        .directive('scopeDemoIsolated3', scopeDemoIsolated3)
+        .directive('scopeDemoIsolated4', scopeDemoIsolated4)
+        .directive('scopeDemoIsolated5', scopeDemoIsolated5)
+        .directive('scopeDemoIsolated6', scopeDemoIsolated6)
         .directive('component', component)
         .directive('decor1', decor1)
         .directive('decor2', decor2)
+        .directive('greeting1', greeting1)
+        .directive('greeting2', greeting2)
+        .directive('greeting3', greeting3)
+        .directive('greeting4', greeting4)
+        .directive('greeting5', greeting5)
+        .directive('greeting6', greeting6)
+        .directive('greeting7', greeting7)
+        .directive('hi', hi)
+        .directive('hi2', hi2)
+        .directive('hi3', hi3)
+        .directive('hi4', hi4)
+        .directive('hello', hello)
+        .directive('hello2', hello2)
+        .directive('hello3', hello3)
+        .directive('hello4', hello4)
+        .directive('domains', domains)
+        .directive('myMultiElem', myMultiElem)
     ;
 
     function unorderedList1() {
@@ -308,9 +330,7 @@
     function scopeDemoIsolated() {
         return {
             restrict: 'A',
-            scope: {
-
-            },
+            scope: {},
             templateUrl: 'templates/userDataTemplate.html',
             link: function (scope) {
                 scope.user = {};
@@ -324,9 +344,7 @@
     function component() {
         return {
             restrict: 'E',
-            scope: {
-
-            },
+            scope: {},
             link: function (scope) {
                 scope.dataSource = 'directive';
                 console.log('component');
@@ -369,4 +387,304 @@
         }
     }
 
+    function scopeDemoIsolated2() {
+        return {
+            restrict: 'A',
+            scope: {
+                local: '<prop'
+            },
+            template: `<input ng-model="local.prop"/>`
+        }
+    }
+
+    function scopeDemoIsolated3() {
+        return {
+            restrict: 'A',
+            scope: {
+                local: '=prop',
+            },
+            templateUrl: 'templates/scopeBindingsTemplate.html'
+        }
+    }
+
+    function scopeDemoIsolated4() {
+        return {
+            restrict: 'A',
+            scope: {
+                local: '<prop',
+                cityFn: '&city'
+            },
+            templateUrl: 'templates/scopeEvalTemplate.html'
+        }
+    }
+
+    function scopeDemoIsolated5() {
+        return {
+            restrict: 'A',
+            scope: {
+                cityFn: '&city'
+            },
+            templateUrl: 'templates/scopeEvalD ataTemplate.html'
+        }
+    }
+
+
+    function greeting1() {
+        return {
+            restrict: 'E',
+            scope: {},
+            templateUrl: 'templates/greetingTemplate.html',
+            controller: function ($scope) {
+                $scope.sayHello = function () {
+                    console.log("Hello");
+                }
+            }
+        }
+    }
+
+    function greeting2() {
+        return {
+            restrict: 'E',
+            scope: {},
+            templateUrl: 'templates/greetingTemplate.html',
+            controller: 'Greeting'
+        }
+    }
+
+    function greeting3() {
+        return {
+            restrict: 'E',
+            scope: {},
+            templateUrl: 'templates/greetingTemplate.html',
+            controller: '@',
+            name: 'ctrl'
+        }
+    }
+
+    function scopeDemoIsolated6() {
+        return {
+            restrict: 'A',
+            scope: {},
+            template: '<p>{{$ctrl.prop}}={{$ctrl.result}}</p>',
+            controllerAs: '$ctrl',
+            bindToController: {
+                prop: '@'
+            },
+            controller: function ($scope) {
+                var $ctrl = this;
+                $ctrl.result = 111;
+
+                console.log($scope);
+            }
+        }
+    }
+
+    function greeting4() {
+        var greetings = [];
+
+        return {
+            restrict: 'E',
+            scope: {},
+            templateUrl: 'templates/greetingTemplate.html',
+            controller: function ($scope) {
+                $scope.sayHello = function () {
+                    alert(greetings.join());
+                };
+
+                this.addGreeting = function (greeting) {
+                    greetings.push(greeting);
+                }
+            },
+        }
+    }
+
+    function hi() {
+        return {
+            restrict: 'A',
+            require: 'greeting4',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hi');
+            }
+        }
+    }
+
+    // function hello() {
+    //     return {
+    //         restrict: 'A',
+    //         require: 'greeting4',
+    //         link: function (scope, elem, attrs, ctrl) {
+    //             ctrl.addGreeting('Hello');
+    //         }
+    //     }
+    // }
+
+    function hello() {
+        return {
+            restrict: 'A',
+            require: {parent: 'greeting4'},
+            bindToController: true,
+            controller: function () {
+
+                this.$onInit = function () {
+                    this.parent.addGreeting("hello");
+                }
+            }
+        }
+    }
+
+    function domains() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope,  elem, attrs, ctrl) {
+                console.log(ctrl.$validators.email);
+                ctrl.$validators.domains = function (modelValue, viewValue) {
+                    console.log(`model value: ${modelValue}`);
+                    console.log(`view value: ${viewValue}`);
+
+                    if (ctrl.$isEmpty(modelValue)) {
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+        }
+    }
+
+    function greeting5() {
+        var greetings = [];
+
+        return {
+            restrict: 'E',
+            scope: {},
+            transclude: true,
+            templateUrl: 'templates/greetingTranscludeTemplate.html',
+            controller: function ($scope) {
+                $scope.sayHello = function () {
+                    alert(greetings.join());
+                };
+
+                this.addGreeting = function (greeting) {
+                    greetings.push(greeting);
+                }
+            },
+        }
+    }
+
+    function hi2() {
+        return {
+            restrict: 'A',
+            require: '^greeting5',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hi');
+            }
+        }
+    }
+
+    function hello2() {
+        return {
+            restrict: 'A',
+            require: '^greeting5',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hello');
+            }
+        }
+    }
+
+    function greeting6() {
+        var greetings = [];
+
+        return {
+            restrict: 'E',
+            scope: {},
+            transclude: true,
+            templateUrl: 'templates/greetingTranscludeTemplate.html',
+            controller: function ($scope) {
+                $scope.sayHello = function () {
+                    alert(greetings.join());
+                };
+
+                this.addGreeting = function (greeting) {
+                    greetings.push(greeting);
+                }
+            },
+        }
+    }
+
+    function hi3() {
+        return {
+            restrict: 'A',
+            priority: 2,
+            require: '^greeting6',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hi');
+            }
+        }
+    }
+
+    function hello3() {
+        return {
+            restrict: 'A',
+            priority: 1,
+            require: '^greeting6',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hello');
+            }
+        }
+    }
+
+    function greeting7() {
+        var greetings = [];
+
+        return {
+            restrict: 'E',
+            scope: {},
+            transclude: true,
+            templateUrl: 'templates/greetingTranscludeTemplate.html',
+            controller: function ($scope) {
+                $scope.sayHello = function () {
+                    alert(greetings.join());
+                };
+
+                this.addGreeting = function (greeting) {
+                    greetings.push(greeting);
+                }
+            },
+        }
+    }
+
+    function hi4() {
+        return {
+            restrict: 'A',
+            priority: 1,
+            require: '^greeting7',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hi');
+            }
+        }
+    }
+
+    function hello4() {
+        return {
+            restrict: 'A',
+            priority: 2,
+            terminal: true,
+            require: '^greeting7',
+            link: function (scope, elem, attrs, ctrl) {
+                ctrl.addGreeting('Hello');
+            }
+        }
+    }
+
+    function myMultiElem() {
+        return {
+            restrict: 'A',
+            multiElement: true,
+            link: function (scope, elem, attrs) {
+                console.log(elem);
+                angular.element(elem[0]).css('color', 'red');
+            }
+        }
+    }
 })();
