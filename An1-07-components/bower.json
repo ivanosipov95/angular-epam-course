@@ -1,0 +1,20 @@
+{
+  "name": "angular-15-components",
+  "version": "1.0.0",
+  "description": "Example",
+  "authors": [
+    "Vitaliy Zhyrytskyy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.2",
+    "bootstrap": "3.3.6"
+  }
+}
