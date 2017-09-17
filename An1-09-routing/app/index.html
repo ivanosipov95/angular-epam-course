@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Task Manager</title>
+
+	<link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+				<a class="navbar-brand" href="index.html">Task Manager</a>
+		</nav>
+	
+		<div class="row">
+			<div class="col-md-2">
+				<ul class="nav nav-pills nav-stacked">
+					<li><a ng-href="#/">Tasks</a></li>
+					<li><a ng-href="#/users">Users</a></li>
+				</ul>
+			</div>
+			<div class="col-md-10">
+				<div ng-view></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="vendor/angular/angular.min.js"></script>
+	<script src="vendor/angular-route/angular-route.min.js"></script>
+
+	<script src="app.js"></script>
+	<script src="app.config.js"></script>
+
+	<script src="tasks/tasks.module.js"></script>
+	<script src="tasks/task-list.controller.js"></script>
+	<script src="tasks/tasks-array.service.js"></script>
+	<script src="tasks/add-task.controller.js"></script>
+	
+	<script src="users/users.module.js"></script>
+	<script src="users/add-user.controller.js"></script>
+	<script src="users/edit-user.controller.js"></script>
+	<script src="users/user-list.controller.js"></script>
+	<script src="users/users.service.js"></script>
+
+	<script src="user-tasks/user-tasks.module.js"></script>
+	<script src="user-tasks/user-task-list.controller.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

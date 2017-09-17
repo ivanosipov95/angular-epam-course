@@ -1,0 +1,19 @@
+<h3>New Task</h3>
+<form>
+    <div class="form-group">
+        <label>User</label>
+        <select class="form-control"
+                ng-options="user.name for user in $ctrl.users"
+                ng-model="$ctrl.task.user"></select>
+    </div>
+    <div class="form-group">
+        <span>Task</span>
+        <input class="form-control" ng-model="$ctrl.task.action"/>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-default"
+                ng-click="$ctrl.addNewTask($ctrl.task)">Add
+        </button>
+        <button class="btn btn-default" ng-click="$ctrl.navigate('home')">Cancel</button>
+    </div>
+</form>

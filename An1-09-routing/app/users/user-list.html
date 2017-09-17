@@ -1,0 +1,16 @@
+<h3>Users</h3>
+<div class="btn-group" role="group" aria-label="...">
+	<button class="btn btn-primary">New User</button>
+</div>
+<table class="table table-condensed table-striped" >
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Location</th>
+	</tr>
+	<tr ng-repeat="item in $ctrl.users">
+		<td>{{item.id}}</td>
+		<td><a ng-href="#/userTasks/{{item.id}}">{{item.name}}</a></td>
+		<td>{{item.location}}</td>
+	</tr>
+</table>
